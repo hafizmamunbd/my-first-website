@@ -3,7 +3,7 @@ body{
     font-family: 'PT Serif', serif;
 }
 h1{
-    font-size: 40px;
+    font-size: 50px;
 }
 .orange-highlight{
     color: orange;
@@ -23,7 +23,7 @@ h1{
 }
 section{
     height: 500px;
-    padding-bottom: 150px;
+    padding-bottom: 100px;
 }
 .link_button{
     text-decoration: none;
@@ -63,4 +63,34 @@ h3{
     border-left: 10px solid;
     border-image: linear-gradient(180deg, blue, cyan);
     border-image-slice: 1;
+}
+.info{
+    background-image: url(images/header-bg.png);
+    background-repeat: no-repeat;
+    padding-left: 2%;
+    margin: 5%;
+}
+    
+
+.contract{
+    text-align: justify;
+    box-shadow: 7px 7px 40px;
+    width: 35%;
+    padding-left: 5%;
+    border-radius: 10px;
+    height: 250px;
+    border-top: 12px solid;
+    border-image: linear-gradient(45deg, cyan, green);
+    border-image-slice: 1;
+}
+#contract{
+    margin: 0;
+    color: coral; 
+    padding: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+footer{
+    text-align: center;
+    font-size: 12px;
 }

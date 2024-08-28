@@ -1,4 +1,4 @@
- Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
 name: Build and deploy ASP app to Azure Web App - alheba
@@ -38,20 +38,29 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: ASP-app
       
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_19FB088366024D1C85D0307E5EE6A3DD }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_61798EDD952946A4AA98E4AF7A3F935D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F0B02AE9287049038E5AA591B3538BF8 }}
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'alheba'
-          slot-name: 'production'
+          slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_38597fb5ecc44c8397237f972224c6d4 }}
+          
